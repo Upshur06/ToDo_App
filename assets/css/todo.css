@@ -4,6 +4,7 @@
   margin: 0 auto;
 }
 
-/* li{
-  text-decoration:line-through;
-} */
+.turnGray{
+  color: rgb(128, 128, 128);
+  text-decoration: line-through;
+}
