@@ -34,37 +34,46 @@ function listDate(){
   let listDate = $("input[type=date]").val().split("-");
   let todoDate = `${listDate[1]}-${listDate[2]}-${listDate[0]}`;
 
-  console.log((Number(listDate[2]) - $day));
-  console.log((Number(listDate[1]) - $month));
+  // console.log((Number(listDate[2]) - $day));
+  // console.log((Number(listDate[1]) - $month));
 
-  if(Number(listDate[1]) == $month && Number(listDate[0]) == $year && Number(listDate[2]) < $day){
+  if(todoDate === $todayDate){
+    console.log("sameday");
+    $("#list-today").append("<li>" + "<span><i class='fa fa-trash'></i></span> " + listText() + "           " + listTime() + "</li>");
+  } else if(Number(listDate[1]) == $month && Number(listDate[0]) == $year && Number(listDate[2]) < $day){
     console.log("pastdue");
+      $("#list-pastdue").append("<li>" + "<span><i class='fa fa-trash'></i></span> " + listText() + "           " + listTime() + "</li>");
   } else if(Number(listDate[1]) < $month && Number(listDate[0]) == $year || Number(listDate[0]) < $year){
     console.log("Also pastdue");
+    $("#list-pastdue").append("<li>" + "<span><i class='fa fa-trash'></i></span> " + listText() + "           " + listTime() + "</li>");
   } else if((Number(listDate[1]) - $month) >= 2 && Number(listDate[0]) == $year){
-    console.log("this Year")
+    console.log("this Year");
+    $("#list-thisYear").append("<li>" + "<span><i class='fa fa-trash'></i></span> " + listText() + "           " + listTime() + "</li>");
   } else if(Number(listDate[1]) == $month && Number(listDate[0]) == $year && (Number(listDate[2]) - $day) < 2){
-    console.log("next day")
+    console.log("next day");
+    $("#list-tommarow").append("<li>" + "<span><i class='fa fa-trash'></i></span> " + listText() + "           " + listTime() + "</li>");
   } else if(Number(listDate[1]) == $month && Number(listDate[0]) == $year && (Number(listDate[2]) - $day) >= 1 || Number(listDate[2]) >= 31){
-    console.log("coming up")
+    console.log("coming up");
+    $("#list-comingUp").append("<li>" + "<span><i class='fa fa-trash'></i></span> " + listText() + "           " + listTime() + "</li>");
   } else if(Number(listDate[0]) == $year && (Number(listDate[1]) - $month) <= 2 || (Number(listDate[1]) - $month) > 0){
     console.log("next Month");
+    $("#list-nextMonth").append("<li>" + "<span><i class='fa fa-trash'></i></span> " + listText() + "           " + listTime() + "</li>");
   } else if(Number(listDate[0]) == $year && (Number(listDate[1]) - $month) <= 3 || Number(listDate[1]) >= 12  || (Number(listDate[1]) - $month) > 0){
     console.log("this Year");
+    $("#list-thisYear").append("<li>" + "<span><i class='fa fa-trash'></i></span> " + listText() + "           " + listTime() + "</li>");
+  } else {
+    alert("Fill in the Text Please!!!");
   }
 
-  // else if(todoDate === $todayDate){
-  //   console.log("sameday");
-  // }
 
-
-  $("#btn-container").append("<ul>" + todoDate + "</ul>");
+  // $("#btn-container").append("<ul>" + todoDate + "</ul>");
   }
 
 function listText(){
   let todoText = $("input[type=text]").val();
-  console.log(todoText);
-      $("ul").append("<li>" + "<span><i class='fa fa-trash'></i></span> " + todoText + "           " + listTime() + "</li>");
+  return todoText;
+  // console.log(todoText);
+      // $("ul").append("<li>" + "<span><i class='fa fa-trash'></i></span> " + todoText + "           " + listTime() + "</li>");
 }
 
 function listTime(){
